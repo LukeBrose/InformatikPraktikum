@@ -5,6 +5,9 @@ using UnityEngine;
 public class AI_Patrol : MonoBehaviour
 {
     //Quelle für Skripte und Ideenfindung: https://www.youtube.com/watch?v=rn3tCuGM688 sowie https://www.youtube.com/watch?v=8eWbSN2T8TE
+    public GameObject player;
+    public GameObject enemy;
+    public Material thisMaterial;
 
     //Bool um die Patroullienstatus zu stoppen und fortzuführen
     public bool mustPatrol = true;
@@ -16,20 +19,29 @@ public class AI_Patrol : MonoBehaviour
     private float distancepoint_right;
     private float distancepoint_left;
     //Überprüfung ob Gegner gerade nach rechts Laufen soll 
-    public bool patrolright = true; 
+    public bool patrolright = true;
 
-    // Start is called before the first frame update
+    //Größe für Targetrange
+    public float targetrange = 10f;
+
+        // Start is called before the first frame update
     void Start()
     {
         distancepoint_right = transform.position.x + endpunkt_x;
         distancepoint_left = transform.position.x - endpunkt_x;
         Debug.Log(distancepoint_right);
         Debug.Log(distancepoint_left);
+
     }
 
     // Update is called once per frame
     void Update()
     {
+        var cubeRenderer = this.GetComponent<Renderer>();
+
+        player = GameObject.Find("Player");
+        //Debug.Log(playerPos);
+
         //Unterscheidung zwischen 2 Methoden (links und rechts laufen bis zum Maximalwert) 
         if (mustPatrol == true && patrolright == true)
         {
@@ -39,6 +51,8 @@ public class AI_Patrol : MonoBehaviour
         {
             PatrolOtherWay();
         }
+
+        FindTarget();
     }
 
     void Patrol()
@@ -77,5 +91,21 @@ public class AI_Patrol : MonoBehaviour
     //Gegner soll sich immer Drehen, wenn die maximale Distanz erreicht ist 
     {
         transform.localScale = new Vector3(transform.localScale.x * -1, transform.localScale.y, transform.localScale.z);
+    }
+
+
+    //Schritt 2: Player auf Sicht (https://www.youtube.com/watch?v=db0KWYaWfeM) 
+    private void FindTarget()
+    {
+        //Debug.Log(transform.position.x - player.transform.position.x);
+        if (Vector3.Distance(transform.position, player.transform.position) < targetrange)
+            {
+            thisMaterial.SetColor("_Color", Color.red);
+        }
+
+        if (Vector3.Distance(transform.position, player.transform.position) > targetrange)
+        {
+            thisMaterial.SetColor("_Color", Color.blue);
+        }
     }
 }
