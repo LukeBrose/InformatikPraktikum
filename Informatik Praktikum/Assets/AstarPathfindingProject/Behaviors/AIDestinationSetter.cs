@@ -17,6 +17,7 @@ namespace Pathfinding {
 		/// <summary>The object that the AI should move to</summary>
 		public Transform target;
 		IAstarAI ai;
+		public bool insight = false; 
 
 		void OnEnable () {
 			ai = GetComponent<IAstarAI>();
@@ -33,7 +34,11 @@ namespace Pathfinding {
 
 		/// <summary>Updates the AI's destination every frame</summary>
 		void Update () {
-			if (target != null && ai != null) ai.destination = target.position;
+			// Die Update Methode wird nur genutzt, wenn der Gegner in Sicht ist (siehe AI_Patrol)
+			if (target != null && ai != null)
+				ai.destination = target.position;
+
+
 		}
 	}
 }
