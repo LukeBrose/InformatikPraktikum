@@ -27,6 +27,9 @@ using Pathfinding;
 
         //Bool, ob Player in Sicht ist
         public bool insight = false;
+
+        public Material mat;
+
         
 
         // Start is called before the first frame update
@@ -36,8 +39,7 @@ using Pathfinding;
             distancepoint_left = transform.position.x - endpunkt_x;
             Debug.Log(distancepoint_right);
             Debug.Log(distancepoint_left);
-
-        }
+    }
 
         // Update is called once per frame
         void Update()
@@ -62,6 +64,7 @@ using Pathfinding;
 
         void Patrol()
         {
+
             //Debug.Log("Patrol: " + transform.position.x);
             //Bei jedem Update bewegt sich der Gegner einen Schritt weiter zu endpunkt_x
             transform.position = Vector3.MoveTowards(transform.position, new Vector3(distancepoint_right, transform.position.y, 0), walkSpeed * Time.deltaTime);
@@ -71,7 +74,7 @@ using Pathfinding;
             {
                 Debug.Log("Endpunkt erreicht (rechts)");
                 //Boolscher Wert wird false, um die andere Methode im nächsten Update zu starten
-                Flip();
+                //Flip();
                 patrolright = false;
 
             }
@@ -86,17 +89,18 @@ using Pathfinding;
             if (transform.position.x == distancepoint_left)
             {
                 Debug.Log("Endpunkt erreicht (links)");
-                Flip();
+                //Flip();
                 patrolright = true;
 
             }
         }
 
-        void Flip()
+        /*void Flip()
         //Gegner soll sich immer Drehen, wenn die maximale Distanz erreicht ist 
         {
             transform.localScale = new Vector3(transform.localScale.x * -1, transform.localScale.y, transform.localScale.z);
         }
+        */
 
 
         //Schritt 2: Player auf Sicht (https://www.youtube.com/watch?v=db0KWYaWfeM) 
@@ -107,14 +111,17 @@ using Pathfinding;
             //Debug.Log(transform.position.x - player.transform.position.x);
             if (Vector3.Distance(transform.position, player.transform.position) < targetrange)
             {
-                thisMaterial.SetColor("_Color", Color.red);
+                Color insightcol = new Color(0.7f, 0.1f, 0.1f, 0.2f);
+                mat.SetColor("_Color", insightcol);
                 insight = true;
             }
 
             if (Vector3.Distance(transform.position, player.transform.position) > targetrange)
             {
-                thisMaterial.SetColor("_Color", Color.blue);
+                Color outsightcol = new Color(0.8f, 0.7f, 0.1f, 0.2f);
+                mat.SetColor("_Color", outsightcol);
                 insight = false;
+
             }
         }
     }

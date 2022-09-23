@@ -10,6 +10,7 @@ public class EnemyHealth : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player"))
         {
+            Debug.Log("Test");
             Destroy(mainobject);
         }
     }
