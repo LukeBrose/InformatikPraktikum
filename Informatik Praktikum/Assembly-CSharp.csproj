@@ -77,12 +77,14 @@
     <Compile Include="Assets\BehaviorTree\Tree.cs" />
     <Compile Include="Assets\Enemy Galore 1 - Pixel Art\Script\EnemySelector.cs" />
     <Compile Include="Assets\Enemy Galore 1 - Pixel Art\Script\EnemyTest.cs" />
-    <Compile Include="Assets\FlippingGraphics.cs" />
     <Compile Include="Assets\Scripts\AI_Patrol.cs" />
+    <Compile Include="Assets\Scripts\AI_Patrol2.cs" />
     <Compile Include="Assets\Scripts\CameraController.cs" />
     <Compile Include="Assets\Scripts\CharacterController2D.cs" />
     <Compile Include="Assets\Scripts\CustomAIDestinationSetter.cs" />
+    <Compile Include="Assets\Scripts\CustomAIDestinationSetter2.cs" />
     <Compile Include="Assets\Scripts\EnemyHealth.cs" />
+    <Compile Include="Assets\Scripts\FlippingGraphics.cs" />
     <Compile Include="Assets\Scripts\MovingPlayer.cs" />
     <Compile Include="Assets\Scripts\PlayerMovement.cs" />
     <None Include="Assets\Enemy Galore 1 - Pixel Art\Read Me.txt" />
