@@ -3,6 +3,7 @@
 public class MovingPlayer : MonoBehaviour
 {
     //Quelle: https://www.youtube.com/watch?v=K1xZ-rycYY8 
+    //Einfaches Bewegungsskript für den Player. Nahezu unverändert übernommen. 
 
     private float horizontal;
     private float speed = 8f;
@@ -27,7 +28,6 @@ public class MovingPlayer : MonoBehaviour
         {
             rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y * 0.7f);
         }
-
         Flip();
     }
 

@@ -8,12 +8,8 @@ public class CameraController : MonoBehaviour
     public float distance = -10f;
     public float moveDuration = 0.2f;
     public Vector3 velocity = Vector3.zero;
-
-    void Start()
-    {
-
-    }
-
+    
+    //Einfaches Skript um dem/der Spieler/in zu folgen
     void FixedUpdate()
     {
         Vector3 destination = target.TransformPoint(new Vector3(1, 1, distance));

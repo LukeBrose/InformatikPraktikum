@@ -8,9 +8,10 @@ public class EnemyHealth : MonoBehaviour
 
     public void OnTriggerEnter2D(Collider2D collision)
     {
+        // Gegner soll verschwinden, wenn der Spieler/die Spielerin auf diesen springt
+        // Simuliert hierbei die Lebenspunkte des Gegners. Später erweiterbar für mehrere notwendige Angriffe.
         if (collision.gameObject.CompareTag("Player"))
         {
-            Debug.Log("Test");
             Destroy(mainobject);
         }
     }
